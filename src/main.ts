@@ -32,22 +32,19 @@ class Main {
 
         const testMap: string = data;
 
-        console.log('Map');
+        console.log('ASCII map');
         console.log(testMap);
         console.log('');
-
-        const startPoint: string = constants.startAtChar;
-        const endPoint: string = constants.endAtChar;
 
         // Create ASCII map
         const asciiMap = new AsciiMap(testMap);
         // Check is map is valid and stop execution if invalid
-        if (!asciiMap.isMapValid(startPoint, endPoint)) {
+        if (!asciiMap.isMapValid(constants.pathStartChar, constants.pathEndChar)) {
             console.log('Error');
             return;
+        } else {
+            Path.followPath(asciiMap);
         }
-
-        Path.collectLetters(asciiMap);
     }
 
 }

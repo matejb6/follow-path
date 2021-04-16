@@ -1,24 +1,16 @@
+import { Constants } from './definitions';
+
 /**
  * @type Constants
  * @description Constants
  */
 export const constants: Constants = {
-    startAtChar: '@',
-    endAtChar: 'x',
-    alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+    pathStartChar: '@',
+    pathEndChar: 'x',
+    cross: '+',
     horizontalPath: '-',
     verticalPath: '|',
-    cross: '+'
-}
-
-/**
- * @description Constants interface
- */
-export interface Constants {
-    startAtChar: string;
-    endAtChar: string;
-    alphabet: string[];
-    horizontalPath: string;
-    verticalPath: string;
-    cross: string;
+    alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+        'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+        'U', 'V', 'W', 'X', 'Y', 'Z']
 }

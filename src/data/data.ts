@@ -1,12 +1,17 @@
 
-const inputMap: string = `  @---A---+
+const inputMap1: string = `  @---A---+
           |
   x-B-+   C
       |   |
       +---+`;
+const inputMap3: string = `  @---A---+
+          |
+  x-B-+   |
+      |   |
+      +---C`;
+const inputMap5: string = ` +-B-+
+ |  +C-+
+@A+ ++ D
+ ++    x`;
 
-const mapOne: string = `ABCD
-EFGH
-IJKL`;
-
-export const data: string = inputMap;
+export const data: string = inputMap1;

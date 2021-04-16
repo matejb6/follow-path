@@ -38,13 +38,13 @@ export class AsciiMap {
 
     /**
      * @public
-     * @param startPoint Start point
-     * @param endPoint End point
+     * @param pathStartChar Path start char
+     * @param pathEndChar Path end char
      * @returns Is map valid
      * @description Checks if map is valid
      */
-     public isMapValid(startPoint: string, endPoint: string): boolean {
-        return this.getCharCount(startPoint) === 1 && this.getCharCount(endPoint) === 1;
+     public isMapValid(pathStartChar: string, pathEndChar: string): boolean {
+        return this.getCharCount(pathStartChar) === 1 && this.getCharCount(pathEndChar) === 1;
     }
 
     /**
