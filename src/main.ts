@@ -1,20 +1,4 @@
-/**
- * README.md
- * 
- * About
- * Software Sauna Code Callenge
- * 
- * Prerequisites
- * install latest node.js 14.x
- * check if node and npm is installed
- * 
- * Start
- * run 'npm install' to install deps
- * run 'npm start' in project root directory
- * 
- */
-
-import { map1, map2, map3, map4, map5 } from './data/data';
+import { map1, map2, map3, map4, map5 } from '../data/data';
 import { constants } from './shared/constants'
 import { AsciiMap } from './map/ascii-map';
 import { Path } from './map/path';
