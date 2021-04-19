@@ -1,16 +1,19 @@
 export class AsciiMapPoint {
 
     /**
+     * @private
      * @type number
      * @description X
      */
     private x: number;
     /**
+     * @private
      * @type number
      * @description Y
      */
     private y: number;
     /**
+     * @private
      * @type string
      * @description Value
      */
@@ -23,6 +26,7 @@ export class AsciiMapPoint {
     }
 
     /**
+     * @public
      * @returns X
      * @description Returns X
      */
@@ -31,6 +35,7 @@ export class AsciiMapPoint {
     }
 
     /**
+     * @public
      * @returns Y
      * @description Returns Y
      */
@@ -39,6 +44,7 @@ export class AsciiMapPoint {
     }
 
     /**
+     * @public
      * @returns Value
      * @description Returns Value
      */

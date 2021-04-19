@@ -7,7 +7,7 @@
     "description": "Software Sauna Code Challenge written in TypeScript",
     "main": "./dist/main.js",
     "scripts": {
-        "start": "tsc --module commonjs && node ./dist/main.js",
+        "start": "tsc --module commonjs && node ./dist/src/main.js",
         "test": "mocha --require ts-node/register ./test/**/*.ts"
     },
     "dependencies": {},

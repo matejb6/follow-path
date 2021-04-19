@@ -1,7 +1,10 @@
-import { map1, map2, map3, map4, map5 } from '../data/data';
+import { map1 } from '../data/valid-maps';
+import { map10 } from '../data/invalid-maps';
 import { constants } from './shared/constants'
 import { AsciiMap } from './map/ascii-map';
 import { Path } from './map/path';
+
+// TODO lint
 
 class Main {
 
@@ -14,28 +17,22 @@ class Main {
         console.log('Software Sauna Code Challenge');
         console.log('');
 
-        const testMaps: string[] = [];
-        testMaps.push(map1);
-        testMaps.push(map2);
-        testMaps.push(map3);
-        testMaps.push(map4);
-        testMaps.push(map5);
+        console.log('ASCII map');
+        console.log(map1);
+        console.log('');
 
-        testMaps.forEach((testMap: string) => {
-            console.log('ASCII map');
-            console.log(testMap);
-            console.log('');
-
-            // Create ASCII map
-            const asciiMap = new AsciiMap(testMap);
-            // Check is map is valid and stop execution if invalid
-            if (!asciiMap.isMapValid(constants.pathStartChar, constants.pathEndChar)) {
-                console.log('Error');
-                return;
-            } else {
-                Path.followPath(asciiMap);
-            }
-        });
+        // Create ASCII map
+        const asciiMap = new AsciiMap(map1);
+        // Check is map is valid and stop execution if invalid
+        if (!asciiMap.isMapValid(constants.pathStartChar, constants.pathEndChar)) {
+            console.log('Error');
+            return;
+        } else {
+            // Log collected letters and path as chars
+            const path = new Path(asciiMap);
+            console.log('Letters: ' + path.collectLetters(constants.alphabet));
+            console.log('Path as characters: ' + path.getPathAsChars());
+        }
     }
 
 }

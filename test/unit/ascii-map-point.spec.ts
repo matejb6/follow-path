@@ -1,6 +1,6 @@
 import { describe } from 'mocha';
 import { expect } from 'chai';
-import { AsciiMapPoint } from '../src/map/ascii-map-point';
+import { AsciiMapPoint } from '../../src/map/ascii-map-point';
 
 describe('Test AsciiMapPoint class', () => {
 
