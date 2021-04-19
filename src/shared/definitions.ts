@@ -14,7 +14,6 @@
  * @description Direction enum
  */
 export enum Direction {
-    noDirection = 'noDirection',
     north = 'north',
     east = 'east',
     south = 'south',

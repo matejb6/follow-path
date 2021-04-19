@@ -1,17 +1,28 @@
 
-const inputMap1: string = `  @---A---+
+export const map1: string = `  @---A---+
           |
   x-B-+   C
       |   |
       +---+`;
-const inputMap3: string = `  @---A---+
+export const map2: string = `  @
+  | +-C--+
+  A |    |
+  +---B--+
+    |      x
+    |      |
+    +---D--+`;
+export const map3: string = `  @---A---+
           |
   x-B-+   |
       |   |
       +---C`;
-const inputMap5: string = ` +-B-+
+export const map4: string = `    +--B--+
+    |   +-C-+
+ @--A-+ | | |
+    | | +-+ D
+    +-+     |
+            x`;
+export const map5: string = ` +-B-+
  |  +C-+
 @A+ ++ D
  ++    x`;
-
-export const data: string = inputMap1;
