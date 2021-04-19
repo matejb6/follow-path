@@ -1,7 +1,7 @@
 
 import { constants } from '../shared/constants'
 import { AsciiMap } from './ascii-map';
-import { AsciiMapPoint } from './acsii-map-point';
+import { AsciiMapPoint } from './ascii-map-point';
 import { Direction } from '../shared/definitions';
 
 export class Path {

@@ -1,4 +1,4 @@
-import { AsciiMapPoint } from './acsii-map-point';
+import { AsciiMapPoint } from './ascii-map-point';
 
 export class AsciiMap {
 
