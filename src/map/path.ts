@@ -78,10 +78,10 @@ export class Path {
                 const southPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.south);
                 const westPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.west);
 
-                const goNorth = this.goNextPoint(northPoint);
-                const goEast = this.goNextPoint(eastPoint);
-                const goSouth = this.goNextPoint(southPoint);
-                const goWest = this.goNextPoint(westPoint);
+                const goNorth = this.isNextPointAllowed(northPoint);
+                const goEast = this.isNextPointAllowed(eastPoint);
+                const goSouth = this.isNextPointAllowed(southPoint);
+                const goWest = this.isNextPointAllowed(westPoint);
 
                 // Get direction from starting point
                 if (marker.getValue() === constants.pathStartChar) {
@@ -97,83 +97,60 @@ export class Path {
                 }
 
                 // Check direction and if possible to go to next point
-                // If cross, change direction
-                if (marker.getValue() === constants.cross) {
-                    // If not possible to go in same direction and cross is current point:
-                    if (direction === Direction.north) {
-                        if (eastPoint && goEast) {
-                            pathPoints.push(eastPoint);
-                            direction = Direction.east;
-                            marker = eastPoint;
-                        }
-                        if (westPoint && goWest) {
-                            pathPoints.push(westPoint);
-                            direction = Direction.west;
-                            marker = westPoint;
-                        }
-                    } else if (direction === Direction.east) {
-                        if (northPoint && goNorth) {
-                            pathPoints.push(northPoint);
-                            direction = Direction.north;
-                            marker = northPoint;
-                        }
-                        if (southPoint && goSouth) {
-                            pathPoints.push(southPoint);
-                            direction = Direction.south;
-                            marker = southPoint;
-                        }
-                    } else if (direction === Direction.south) {
-                        if (eastPoint && goEast) {
-                            pathPoints.push(eastPoint);
-                            direction = Direction.east;
-                            marker = eastPoint;
-                        }
-                        if (westPoint && goWest) {
-                            pathPoints.push(westPoint);
-                            direction = Direction.west;
-                            marker = westPoint;
-                        }
-                    } else if (direction === Direction.west) {
-                        if (southPoint && goSouth) {
-                            pathPoints.push(southPoint);
-                            direction = Direction.south;
-                            marker = southPoint;
-                        }
-                        if (northPoint && goNorth) {
-                            pathPoints.push(northPoint);
-                            direction = Direction.north;
-                            marker = northPoint;
-                        }
-                    }
-                } else if (direction === Direction.north && northPoint && goNorth) {
-                    pathPoints.push(northPoint);
-                    marker = northPoint;
-                } else if (direction === Direction.east && eastPoint && goEast) {
-                    pathPoints.push(eastPoint);
-                    marker = eastPoint;
-                } else if (direction === Direction.south && southPoint && goSouth) {
-                    pathPoints.push(southPoint);
-                    marker = southPoint;
-                } else if (direction === Direction.west && westPoint && goWest) {
-                    pathPoints.push(westPoint);
-                    marker = westPoint;
-                } else if (constants.alphabet.includes(marker.getValue())) {
-                    // If not possible to go in same direction and letter is current point: check all directions except previous
-                    if (northPoint && goNorth && pathPoints[i - 1] !== northPoint) {
-                        pathPoints.push(northPoint);
-                        direction = Direction.north;
-                        marker = northPoint;
-                    } else if (eastPoint && goEast && pathPoints[i - 1] !== eastPoint) {
+                // First: check direction
+                // Second: check if cross (direction change)
+                // Third: check if letter and if no point ahead to go (direction change)
+                // Fourth: go straight if possible
+                if (direction === Direction.north) {
+                    if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(northPoint && goNorth))) && eastPoint && goEast) {
                         pathPoints.push(eastPoint);
                         direction = Direction.east;
                         marker = eastPoint;
-                    } else if (southPoint && goSouth && pathPoints[i - 1] !== southPoint) {
+                    } else if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(northPoint && goNorth))) && westPoint && goWest) {
+                        pathPoints.push(westPoint);
+                        direction = Direction.west;
+                        marker = westPoint;
+                    } else if (northPoint && goNorth) {
+                        pathPoints.push(northPoint);
+                        marker = northPoint;
+                    }
+                } else if (direction === Direction.east) {
+                    if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(eastPoint && goEast))) && northPoint && goNorth) {
+                        pathPoints.push(northPoint);
+                        direction = Direction.north;
+                        marker = northPoint;
+                    } else if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(eastPoint && goEast))) && southPoint && goSouth) {
                         pathPoints.push(southPoint);
                         direction = Direction.south;
                         marker = southPoint;
-                    } else if (westPoint && goWest && pathPoints[i - 1] !== westPoint) {
+                    } else if (eastPoint && goEast) {
+                        pathPoints.push(eastPoint);
+                        marker = eastPoint;
+                    }
+                } else if (direction === Direction.south) {
+                    if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(southPoint && goSouth))) && eastPoint && goEast) {
+                        pathPoints.push(eastPoint);
+                        direction = Direction.east;
+                        marker = eastPoint;
+                    } else if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(southPoint && goSouth))) && westPoint && goWest) {
                         pathPoints.push(westPoint);
                         direction = Direction.west;
+                        marker = westPoint;
+                    } else if (southPoint && goSouth) {
+                        pathPoints.push(southPoint);
+                        marker = southPoint;
+                    }
+                } else if (direction === Direction.west) {
+                    if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(westPoint && goWest))) && southPoint && goSouth) {
+                        pathPoints.push(southPoint);
+                        direction = Direction.south;
+                        marker = southPoint;
+                    } else if ((this.isDirectionChange(marker, constants.cross) || (constants.alphabet.includes(marker.getValue()) && !(westPoint && goWest))) && northPoint && goNorth) {
+                        pathPoints.push(northPoint);
+                        direction = Direction.north;
+                        marker = northPoint;
+                    } else if (westPoint && goWest) {
+                        pathPoints.push(westPoint);
                         marker = westPoint;
                     }
                 }
@@ -181,6 +158,17 @@ export class Path {
             i++;
         }
         return pathPoints;
+    }
+
+    /**
+     * @private
+     * @param asciiMapPoint ASCII map point
+     * @param directionChangeChar Direction change char
+     * @returns Is direction change
+     * @description Checks if direction change
+     */
+    private isDirectionChange(asciiMapPoint: AsciiMapPoint, directionChangeChar: string): boolean {
+        return asciiMapPoint.getValue() === directionChangeChar;
     }
 
     /**
@@ -196,10 +184,10 @@ export class Path {
     /**
      * @private
      * @param asciiMapPoint ASCII map point
-     * @returns Should go next point
+     * @returns Is next point allowed
      * @description Checks if it is allowed to go to next point
      */
-    private goNextPoint(asciiMapPoint: AsciiMapPoint | undefined): boolean {
+    private isNextPointAllowed(asciiMapPoint: AsciiMapPoint | undefined): boolean {
         if (constants.alphabet.includes(asciiMapPoint?.getValue() || '') ||
             asciiMapPoint?.getValue() === constants.cross ||
             asciiMapPoint?.getValue() === constants.pathEndChar ||

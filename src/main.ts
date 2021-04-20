@@ -14,15 +14,16 @@ class Main {
      * @description Main class run method, used to sructure main running code
      */
     public static run(): void {
+        const testMap: string = map1;
         console.log('Software Sauna Code Challenge');
         console.log('');
 
         console.log('ASCII map');
-        console.log(map1);
+        console.log(testMap);
         console.log('');
 
         // Create ASCII map
-        const asciiMap = new AsciiMap(map1);
+        const asciiMap = new AsciiMap(testMap);
         // Check is map is valid and stop execution if invalid
         if (!asciiMap.isMapValid(constants.pathStartChar, constants.pathEndChar)) {
             console.log('Error');
