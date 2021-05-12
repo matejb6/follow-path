@@ -5,16 +5,10 @@ import { AsciiMapPoint } from './ascii-map-point';
 export class AsciiMap {
 
     /**
-     * @private
-     * @readonly
-     * @type string
      * @description ASCII map
      */
     private readonly asciiMap: string;
     /**
-     * @private
-     * @readonly
-     * @type AsciiMapPoint[]
      * @description ASCII map points
      */
     private readonly asciiMapPoints: AsciiMapPoint[];
@@ -25,8 +19,6 @@ export class AsciiMap {
     }
 
     /**
-     * @private
-     * @static
      * @param char Char
      * @returns Is end of row
      * @description Checks if end of row
@@ -36,7 +28,6 @@ export class AsciiMap {
     }
 
     /**
-     * @public
      * @returns ASCII map
      * @description Returns ASCII map
      */
@@ -45,7 +36,6 @@ export class AsciiMap {
     }
 
     /**
-     * @public
      * @returns ASCII map points
      * @description Returns ASCII map points
      */
@@ -54,7 +44,6 @@ export class AsciiMap {
     }
 
     /**
-     * @public
      * @param asciiMapPoint ASCII map point
      * @returns Point surrounding points
      * @description Returns point surrounding points
@@ -69,7 +58,6 @@ export class AsciiMap {
     }
 
     /**
-     * @public
      * @param pathStartChar Path start char
      * @param pathEndChar Path end char
      * @returns Is map valid
@@ -80,7 +68,6 @@ export class AsciiMap {
     }
 
     /**
-     * @private
      * @param char Character
      * @returns Character count
      * @description Returns character count
@@ -96,7 +83,6 @@ export class AsciiMap {
     }
 
     /**
-     * @private
      * @returns Has T fork
      * @description Checks if map has T fork, finds cross points and checks if there are multiple horizontal and vertical paths
      */
@@ -119,9 +105,8 @@ export class AsciiMap {
     }
 
     /**
-     * @private
      * @returns ASCII map points
-     * @description Creates ACSII map points
+     * @description Creates ASCII map points
      */
     private createAsciiMapPoints(): AsciiMapPoint[] {
         const asciiMapPoints: AsciiMapPoint[] = [];
@@ -142,7 +127,6 @@ export class AsciiMap {
     }
 
     /**
-     * @private
      * @param asciiMapPoint ASCII map point
      * @returns North point
      * @description Returns north point
@@ -152,7 +136,6 @@ export class AsciiMap {
     }
 
     /**
-     * @private
      * @param asciiMapPoint ASCII map point
      * @returns East point
      * @description Returns east point
@@ -162,7 +145,6 @@ export class AsciiMap {
     }
 
     /**
-     * @private
      * @param asciiMapPoint ASCII map point
      * @returns South point
      * @description Returns south point
@@ -172,7 +154,6 @@ export class AsciiMap {
     }
 
     /**
-     * @private
      * @param asciiMapPoint ASCII map point
      * @returns West point
      * @description Returns west point

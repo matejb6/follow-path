@@ -4,8 +4,6 @@ import { constants } from './shared/constants'
 import { AsciiMap } from './map/ascii-map';
 import { Path } from './map/path';
 
-// TODO lint
-
 class Main {
 
     /**

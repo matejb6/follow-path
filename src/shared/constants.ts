@@ -1,7 +1,6 @@
 import { Constants } from './definitions';
 
 /**
- * @type Constants
  * @description Constants
  */
 export const constants: Constants = {
