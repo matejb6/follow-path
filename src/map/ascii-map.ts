@@ -6,20 +6,33 @@ export class AsciiMap {
 
     /**
      * @private
+     * @readonly
      * @type string
      * @description ASCII map
      */
-    private asciiMap: string;
+    private readonly asciiMap: string;
     /**
      * @private
+     * @readonly
      * @type AsciiMapPoint[]
      * @description ASCII map points
      */
-    private asciiMapPoints: AsciiMapPoint[];
+    private readonly asciiMapPoints: AsciiMapPoint[];
 
     constructor(asciiMap: string) {
         this.asciiMap = asciiMap;
         this.asciiMapPoints = this.createAsciiMapPoints();
+    }
+
+    /**
+     * @private
+     * @static
+     * @param char Char
+     * @returns Is end of row
+     * @description Checks if end of row
+     */
+    private static isEndOfRow(char: string): boolean {
+        return !!(/[\r\n]/.exec(char));
     }
 
     /**
@@ -107,16 +120,6 @@ export class AsciiMap {
 
     /**
      * @private
-     * @param char Char
-     * @returns Is end of row
-     * @description Checks if end of row
-     */
-    private isEndOfRow(char: string): boolean {
-        return !!(/\r|\n/.exec(char));
-    }
-
-    /**
-     * @private
      * @returns ASCII map points
      * @description Creates ACSII map points
      */
@@ -127,7 +130,7 @@ export class AsciiMap {
         for (let i = 0; i < this.asciiMap.length; i++) {
             // Create each ASCII map point with position and value
             const asciiMapPoint = new AsciiMapPoint(column, row, this.asciiMap.charAt(i));
-            if (this.isEndOfRow(this.asciiMap.charAt(i))) {
+            if (AsciiMap.isEndOfRow(this.asciiMap.charAt(i))) {
                 column = 0;
                 row++;
             } else {

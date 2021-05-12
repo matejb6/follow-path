@@ -1,7 +1,7 @@
 /**
  * @description Constants interface
  */
- export interface Constants {
+export interface Constants {
     pathStartChar: string;
     pathEndChar: string;
     cross: string;

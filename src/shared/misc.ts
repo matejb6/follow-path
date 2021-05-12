@@ -7,7 +7,7 @@ export class Misc {
      * @returns Is string
      * @description Checks if parameter is string
      */
-     public static isString(param: string): boolean {
+    public static isString(param: string): boolean {
         return typeof param === 'string';
     }
 

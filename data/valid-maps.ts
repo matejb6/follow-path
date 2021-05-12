@@ -26,4 +26,4 @@ export const map5: string = ` +-B-+
 @A+ ++ D
  ++    x`;
 
- export const validMaps: string[] = [map1, map2, map3, map4, map5];
+export const validMaps: string[] = [map1, map2, map3, map4, map5];

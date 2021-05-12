@@ -2,22 +2,25 @@ export class AsciiMapPoint {
 
     /**
      * @private
+     * @readonly
      * @type number
      * @description X
      */
-    private x: number;
+    private readonly x: number;
     /**
      * @private
+     * @readonly
      * @type number
      * @description Y
      */
-    private y: number;
+    private readonly y: number;
     /**
      * @private
+     * @readonly
      * @type string
      * @description Value
      */
-    private value: string;
+    private readonly value: string;
 
     constructor(x: number, y: number, value: string) {
         this.x = x;
@@ -48,7 +51,7 @@ export class AsciiMapPoint {
      * @returns Value
      * @description Returns Value
      */
-     public getValue(): string {
+    public getValue(): string {
         return this.value;
     }
 
