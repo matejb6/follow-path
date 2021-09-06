@@ -9,7 +9,7 @@ class Main {
     /**
      * @public
      * @static
-     * @description Main class run method, used to sructure main running code
+     * @description Main class run method, used to structure main running code
      */
     public static run(): void {
         const testMap: string = map1;
