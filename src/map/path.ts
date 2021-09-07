@@ -50,7 +50,7 @@ export class Path {
      * @description Retrieves path values and puts them into single path chars string
      */
     public getPathAsChars(): string {
-        let pathAsChars: string = '';
+        let pathAsChars = '';
         this.pathPoints.forEach((point: AsciiMapPoint) => {
             pathAsChars = pathAsChars.concat(point.getValue());
         });
@@ -63,7 +63,7 @@ export class Path {
      * @description Collects letters
      */
     public collectLetters(alphabet: string[]): string {
-        let letters: string = '';
+        let letters = '';
         this.pathPoints.forEach((point: AsciiMapPoint) => {
             // Collect letters, but only if not collected already
             if (alphabet.includes(point.getValue()) && !letters.includes(point.getValue())) {
@@ -86,7 +86,7 @@ export class Path {
         if (marker) {
             pathPoints.push(marker);
         }
-        let i: number = 0;
+        let i = 0;
         while (!this.isPathEndReached(pathPoints) && i <= asciiMap.getAsciiMapPoints().length) {
             if (marker) {
                 const northPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.north);

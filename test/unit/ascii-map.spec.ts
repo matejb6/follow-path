@@ -24,15 +24,8 @@ describe('Test AsciiMap class', () => {
         expect(new AsciiMap(map7).isMapValid(constants.pathStartChar, constants.pathEndChar)).to.equal(false);
         expect(new AsciiMap(map8).isMapValid(constants.pathStartChar, constants.pathEndChar)).to.equal(false);
         expect(new AsciiMap(map9).isMapValid(constants.pathStartChar, constants.pathEndChar)).to.equal(false);
-    });
-
-    it('should have char count', () => {
-        // @ts-ignore
-        expect(new AsciiMap(map1).getCharCount(constants.pathStartChar)).to.equal(1);
-        // @ts-ignore
-        expect(new AsciiMap(map6).getCharCount(constants.pathStartChar)).to.equal(0);
-        // @ts-ignore
-        expect(new AsciiMap(map8).getCharCount(constants.pathStartChar)).to.equal(2);
+        expect(new AsciiMap(map10).isMapValid(constants.pathStartChar, constants.pathEndChar)).to.equal(false);
+        expect(new AsciiMap('').isMapValid(constants.pathStartChar, constants.pathEndChar)).to.equal(false);
     });
 
 });

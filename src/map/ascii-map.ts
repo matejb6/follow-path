@@ -87,7 +87,7 @@ export class AsciiMap {
      * @description Checks if map has T fork, finds cross points and checks if there are multiple horizontal and vertical paths
      */
     private hasTFork(): boolean {
-        let hasTFork: boolean = false;
+        let hasTFork = false;
         const crossPoints: AsciiMapPoint[] = this.asciiMapPoints.filter((asciiMapPoint: AsciiMapPoint) => asciiMapPoint.getValue() === constants.cross);
         crossPoints.forEach((crossPoint: AsciiMapPoint) => {
             const surroundPointsValues = [];
@@ -110,8 +110,8 @@ export class AsciiMap {
      */
     private createAsciiMapPoints(): AsciiMapPoint[] {
         const asciiMapPoints: AsciiMapPoint[] = [];
-        let column: number = 0;
-        let row: number = 0;
+        let column = 0;
+        let row = 0;
         for (let i = 0; i < this.asciiMap.length; i++) {
             // Create each ASCII map point with position and value
             const asciiMapPoint = new AsciiMapPoint(column, row, this.asciiMap.charAt(i));

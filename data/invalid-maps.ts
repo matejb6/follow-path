@@ -1,24 +1,24 @@
-export const map6: string = `     -A---+
+export const map6 = `     -A---+
           |
   x-B-+   C
       |   |
       +---+`;
-export const map7: string = `   @--A---+
+export const map7 = `   @--A---+
           |
     B-+   C
       |   |
       +---+`;
-export const map8: string = `   @--A-@-+
+export const map8 = `   @--A-@-+
           |
   x-B-+   C
       |   |
       +---+`;
-export const map9: string = `   @--A---+
+export const map9 = `   @--A---+
           |
   x-Bx+   C
       |   |
       +---+`;
-export const map10: string = `        x-B
+export const map10 = `        x-B
           |
    @--A---+
           |
