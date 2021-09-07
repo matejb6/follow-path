@@ -14,5 +14,8 @@ Code challenge app written in TypeScript
 ## Test
 * in project root run 'npm test' to test code
 
+## Lint
+* in project root run 'npm run lint' to lint code
+
 ## Developer
 **Matej Buljan**
