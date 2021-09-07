@@ -1,22 +1,6 @@
 export class AsciiMapPoint {
 
-    /**
-     * @description X
-     */
-    private readonly x: number;
-    /**
-     * @description Y
-     */
-    private readonly y: number;
-    /**
-     * @description Value
-     */
-    private readonly value: string;
-
-    constructor(x: number, y: number, value: string) {
-        this.x = x;
-        this.y = y;
-        this.value = value;
+    constructor(private readonly x: number, private readonly y: number, private readonly value: string) {
     }
 
     /**
