@@ -7,8 +7,10 @@ Code challenge app written in TypeScript
 * Latest node.js v14.x
 * npm
 
-## Start
+## Setup
 * in project root run 'npm install' to install deps
+
+## Start
 * in project root run 'npm start' to run code
 
 ## Test
