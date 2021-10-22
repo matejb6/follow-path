@@ -13,9 +13,7 @@ describe('Test AsciiMap class', () => {
 
     it('should have map points', () => {
         const asciiMap = new AsciiMap(map1);
-        // @ts-ignore
-        const mapPoints = asciiMap.createAsciiMapPoints();
-        expect(asciiMap.getAsciiMapPoints()).to.deep.equal(mapPoints);
+        expect(asciiMap.getAsciiMapPoints().length).to.be.greaterThan(0);
     });
 
     it('should have valid map check', () => {

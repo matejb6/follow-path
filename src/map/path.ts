@@ -5,30 +5,16 @@ import { Direction } from '../shared/definitions';
 
 export class Path {
 
-    /**
-     * @description Path points
-     */
     private readonly pathPoints: AsciiMapPoint[];
 
     constructor(asciiMap: AsciiMap) {
         this.pathPoints = this.findPathPoints(asciiMap);
     }
 
-    /**
-     * @param asciiMapPoint ASCII map point
-     * @param directionChangeChar Direction change char
-     * @returns Is direction change
-     * @description Checks if direction change
-     */
     private static isDirectionChange(asciiMapPoint: AsciiMapPoint, directionChangeChar: string): boolean {
         return asciiMapPoint.getValue() === directionChangeChar;
     }
 
-    /**
-     * @param asciiMapPoint ASCII map point
-     * @returns Is next point allowed
-     * @description Checks if it is allowed to go to next point
-     */
     private static isNextPointAllowed(asciiMapPoint: AsciiMapPoint | undefined): boolean {
         return constants.alphabet.includes(asciiMapPoint?.getValue() || '') ||
             asciiMapPoint?.getValue() === constants.cross ||
@@ -38,15 +24,6 @@ export class Path {
     }
 
     /**
-     * @returns Path points
-     * @description Returns path points
-     */
-    public getPathPoints(): AsciiMapPoint[] {
-        return this.pathPoints;
-    }
-
-    /**
-     * @returns Path as chars
      * @description Retrieves path values and puts them into single path chars string
      */
     public getPathAsChars(): string {
@@ -57,11 +34,6 @@ export class Path {
         return pathAsChars;
     }
 
-    /**
-     * @param alphabet Alphabet
-     * @returns Letters
-     * @description Collects letters
-     */
     public collectLetters(alphabet: string[]): string {
         let letters = '';
         this.pathPoints.forEach((point: AsciiMapPoint) => {
@@ -74,8 +46,6 @@ export class Path {
     }
 
     /**
-     * @param asciiMap ASCII map
-     * @returns Path points
      * @description Finds map start point and goes along path until end point
      */
     private findPathPoints(asciiMap: AsciiMap): AsciiMapPoint[] {
@@ -87,7 +57,7 @@ export class Path {
             pathPoints.push(marker);
         }
         let i = 0;
-        while (!this.isPathEndReached(pathPoints) && i <= asciiMap.getAsciiMapPoints().length) {
+        while (!this.isPathEnd(pathPoints) && i <= asciiMap.getAsciiMapPoints().length) {
             if (marker) {
                 const northPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.north);
                 const eastPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.east);
@@ -176,12 +146,7 @@ export class Path {
         return pathPoints;
     }
 
-    /**
-     * @param pathPoints Path points
-     * @returns Is path end reached
-     * @description Checks if path end is reached
-     */
-    private isPathEndReached(pathPoints: AsciiMapPoint[]): boolean {
+    private isPathEnd(pathPoints: AsciiMapPoint[]): boolean {
         return pathPoints.some((point: AsciiMapPoint) => point.getValue() === constants.pathEndChar)
     }
 
