@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2022-05-11
+### Added
+- Prettier
+### Changed
+- Package update
+- TS config extends from recommended
+- Code improvements and comments
+
 ## [1.0.2] - 2021-10-22
 ### Added
 - CI
