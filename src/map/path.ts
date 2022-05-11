@@ -25,29 +25,9 @@ export class Path {
   }
 
   /**
-   * @description Retrieves path values and puts them into single path chars string
-   */
-  public getPathAsChars(): string {
-    let pathAsChars = '';
-    this.pathPoints.forEach((point: AsciiMapPoint) => {
-      pathAsChars = pathAsChars.concat(point.getValue());
-    });
-    return pathAsChars;
-  }
-
-  public collectLetters(alphabet: string[]): string {
-    let letters = '';
-    this.pathPoints.forEach((point: AsciiMapPoint) => {
-      // Collect letters, but only if not collected already
-      if (alphabet.includes(point.getValue()) && !letters.includes(point.getValue())) {
-        letters = letters.concat(point.getValue());
-      }
-    });
-    return letters;
-  }
-
-  /**
-   * @description Finds map start point and goes along path until end point
+   * @private
+   * @returns Found ASCII map points
+   * @description Finds map start point, goes along path until end point and returns found map points
    */
   private findPathPoints(asciiMap: AsciiMap): AsciiMapPoint[] {
     const pathPoints: AsciiMapPoint[] = [];
@@ -60,7 +40,7 @@ export class Path {
       pathPoints.push(marker);
     }
     let i = 0;
-    while (!this.isPathEnd(pathPoints) && i <= asciiMap.getAsciiMapPoints().length) {
+    while (!this.isPathEnd(pathPoints, constants.pathEndChar) && i <= asciiMap.getAsciiMapPoints().length) {
       if (marker) {
         const northPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.north);
         const eastPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.east);
@@ -189,7 +169,44 @@ export class Path {
     return pathPoints;
   }
 
-  private isPathEnd(pathPoints: AsciiMapPoint[]): boolean {
-    return pathPoints.some((point: AsciiMapPoint) => point.getValue() === constants.pathEndChar);
+  /**
+   * @private
+   * @param pathPoints Path points
+   * @param pathEndChar Path end char
+   * @returns Path end
+   * @description Checks if path end is reached
+   */
+  private isPathEnd(pathPoints: AsciiMapPoint[], pathEndChar: string): boolean {
+    return pathPoints.some((point: AsciiMapPoint) => point.getValue() === pathEndChar);
+  }
+
+  /**
+   * @public
+   * @returns Path as string
+   * @description Retrieves path values and puts them into single path string
+   */
+  public getPathAsString(): string {
+    let pathAsString = '';
+    this.pathPoints.forEach((point: AsciiMapPoint) => {
+      pathAsString = pathAsString.concat(point.getValue());
+    });
+    return pathAsString;
+  }
+
+  /**
+   * @public
+   * @param alphabet Alphabet
+   * @returns Collected letters
+   * @description Collects letters from path
+   */
+  public collectLetters(alphabet: string[]): string {
+    let letters = '';
+    this.pathPoints.forEach((point: AsciiMapPoint) => {
+      // Collect letters, but only if not collected already
+      if (alphabet.includes(point.getValue()) && !letters.includes(point.getValue())) {
+        letters = letters.concat(point.getValue());
+      }
+    });
+    return letters;
   }
 }

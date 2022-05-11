@@ -25,7 +25,7 @@ describe('Acceptance test', () => {
             it('should have map path as chars', () => {
                 const asciiMap = new AsciiMap(map);
                 const path = new Path(asciiMap);
-                expect(path.getPathAsChars()).to.equal(validMapsPathAsChars[index]);
+                expect(path.getPathAsString()).to.equal(validMapsPathAsChars[index]);
             });
         });
     });
