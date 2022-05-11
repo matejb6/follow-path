@@ -47,11 +47,10 @@ export class AsciiMap {
       (asciiMapPoint: AsciiMapPoint) => asciiMapPoint.getValue() === constants.cross
     );
     crossPoints.forEach((crossPoint: AsciiMapPoint) => {
-      const surroundPointsValues = [];
-      const surroundPoints = this.getPointSurroundingPoints(crossPoint);
-      for (const value of surroundPoints.values()) {
+      const surroundPointsValues: (string | undefined)[] = [];
+      this.getPointSurroundingPoints(crossPoint).forEach((value: AsciiMapPoint | undefined) => {
         surroundPointsValues.push(value?.getValue());
-      }
+      });
       const horizontalPathCount: number = surroundPointsValues.filter(
         (value) => value === constants.horizontalPath
       ).length;
