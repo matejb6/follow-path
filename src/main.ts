@@ -4,6 +4,11 @@ import { AsciiMap } from './map/ascii-map';
 import { Path } from './map/path';
 
 class Main {
+  /**
+   * @public
+   * @static
+   * @description Main run method, entry point to program execution
+   */
   public static run(): void {
     const testMap: string = map1;
     console.log(`Follow Path Code Challenge\n\nASCII map\n${testMap}\n`);
@@ -13,7 +18,7 @@ class Main {
     if (isMapValid) {
       const path = new Path(asciiMap);
       console.log(`Letters: ${path.collectLetters(constants.alphabet)}`);
-      console.log(`Path as characters: ${path.getPathAsChars()}`);
+      console.log(`Path as characters: ${path.getPathAsString()}`);
     } else {
       console.log('Map is invalid');
     }
