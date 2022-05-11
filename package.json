@@ -7,7 +7,7 @@
     "description": "Follow path code challenge app written in TypeScript",
     "main": "./dist/main.js",
     "scripts": {
-        "start": "tsc --module commonjs && node ./dist/src/main.js",
+        "start": "tsc --downlevelIteration && node ./dist/src/main.js",
         "test": "mocha --require ts-node/register ./test/**/*.spec.ts",
         "lint": "eslint . --ext .ts",
         "prettier:check": "npx prettier --check ./src",
@@ -16,7 +16,7 @@
     "private": true,
     "dependencies": {},
     "devDependencies": {
-        "@tsconfig/node14": "^1.0.1",
+        "@tsconfig/recommended": "^1.0.1",
         "@types/chai": "^4.3.1",
         "@types/mocha": "^9.1.1",
         "@types/node": "^14.18.17",
@@ -32,7 +32,6 @@
         "mocha": "^10.0.0",
         "prettier": "^2.6.2",
         "ts-node": "^10.7.0",
-        "tsc": "^2.0.4",
         "typescript": "^4.6.4"
     },
     "engines": {
