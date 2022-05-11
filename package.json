@@ -1,10 +1,7 @@
 {
-    "name": "software-sauna-code-challenge",
+    "name": "follow-path",
     "version": "1.0.2",
-    "author": {
-        "name": "Matej Buljan"
-    },
-    "description": "Code challenge app written in TypeScript",
+    "description": "Follow path code challenge app written in TypeScript",
     "main": "./dist/main.js",
     "scripts": {
         "start": "tsc --module commonjs && node ./dist/src/main.js",
@@ -33,5 +30,8 @@
     "engines": {
         "node": ">= 14.0.0",
         "npm": ">= 6.0.0"
+    },
+    "author": {
+        "name": "Matej Buljan"
     }
 }
