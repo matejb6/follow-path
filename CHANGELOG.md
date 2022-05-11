@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Prettier
 ### Changed
+- Project name change
 - Package update
 - TS config extends from recommended
 - Code improvements and comments
