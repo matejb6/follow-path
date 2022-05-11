@@ -1,6 +1,6 @@
 import { constants } from '../shared/constants';
 import { Direction } from '../shared/definitions';
-import { AsciiMapPoint } from './ascii-map-point';
+import { AsciiMapPoint } from '../point/ascii-map-point';
 
 export class AsciiMap {
   private readonly asciiMap: string;

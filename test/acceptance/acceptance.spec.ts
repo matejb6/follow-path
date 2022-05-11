@@ -1,7 +1,7 @@
 import { describe } from 'mocha';
 import { expect } from 'chai';
 import { AsciiMap } from '../../src/map/ascii-map';
-import { Path } from '../../src/map/path';
+import { Path } from '../../src/path/path';
 import { validMaps } from '../../data/valid-maps';
 import { validMapsLetters } from '../../data/valid-maps-letters';
 import { validMapsPathAsChars } from '../../data/valid-maps-path-as-chars';

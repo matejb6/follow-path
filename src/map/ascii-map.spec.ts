@@ -1,6 +1,7 @@
 import { describe } from 'mocha';
 import { expect } from 'chai';
-import { AsciiMap } from '../../src/map/ascii-map';
+
+import { AsciiMap } from './ascii-map';
 import { constants } from '../../src/shared/constants';
 import { map1 } from '../../data/valid-maps';
 import { map6, map7, map8, map9, map10 } from '../../data/invalid-maps';
