@@ -6,7 +6,7 @@ import { Path } from './map/path';
 class Main {
   public static run(): void {
     const testMap: string = map1;
-    console.log(`Software Sauna Code Challenge\n\nASCII map\n${testMap}\n`);
+    console.log(`Follow Path Code Challenge\n\nASCII map\n${testMap}\n`);
 
     const asciiMap = new AsciiMap(testMap);
     const isMapValid = asciiMap.isMapValid(constants.pathStartChar, constants.pathEndChar);
