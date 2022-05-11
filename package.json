@@ -6,7 +6,9 @@
     "scripts": {
         "start": "tsc --module commonjs && node ./dist/src/main.js",
         "test": "mocha --require ts-node/register ./test/**/*.ts",
-        "lint": "eslint . --ext .ts"
+        "lint": "eslint . --ext .ts",
+        "prettier:check": "npx prettier --check ./src",
+        "prettier:write": "npx prettier --write ./src"
     },
     "dependencies": {},
     "devDependencies": {
@@ -18,11 +20,13 @@
         "@typescript-eslint/parser": "^5.1.0",
         "chai": "^4.3.4",
         "eslint": "^8.0.1",
+        "eslint-config-prettier": "^8.5.0",
         "eslint-config-standard": "^16.0.3",
         "eslint-plugin-import": "^2.25.2",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.1.1",
         "mocha": "^9.1.3",
+        "prettier": "^2.6.2",
         "ts-node": "^10.3.1",
         "tsc": "^2.0.3",
         "typescript": "^4.4.4"
