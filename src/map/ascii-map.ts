@@ -19,7 +19,7 @@ export class AsciiMap {
    * @description Checks if end of row is reached
    */
   private static isEndOfRow(char: string): boolean {
-    return !!/[\r\n]/.exec(char);
+    return !(/[\r\n]/.exec(char) == null);
   }
 
   /**
@@ -39,7 +39,8 @@ export class AsciiMap {
   /**
    * @private
    * @returns Has map T fork
-   * @description Checks if map has T fork, finds cross points and checks if there are multiple horizontal and vertical paths
+   * @description Checks if map has T fork,
+   * finds cross points and checks if there are multiple horizontal and vertical paths
    */
   private hasTFork(): boolean {
     let hasTFork = false;
@@ -47,7 +48,7 @@ export class AsciiMap {
       (asciiMapPoint: AsciiMapPoint) => asciiMapPoint.getValue() === constants.cross
     );
     crossPoints.forEach((crossPoint: AsciiMapPoint) => {
-      const surroundPointsValues: (string | undefined)[] = [];
+      const surroundPointsValues: Array<string | undefined> = [];
       this.getPointSurroundingPoints(crossPoint).forEach((value: AsciiMapPoint | undefined) => {
         surroundPointsValues.push(value?.getValue());
       });
