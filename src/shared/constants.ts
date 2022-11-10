@@ -1,7 +1,7 @@
 import { Constants } from './definitions';
 
 /**
- * @description Constants
+ * Constants
  */
 export const constants: Constants = {
   pathStartChar: '@',

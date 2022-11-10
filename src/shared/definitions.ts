@@ -1,5 +1,5 @@
 /**
- * @description Constants interface
+ * Constants interface
  */
 export interface Constants {
   pathStartChar: string;
@@ -11,7 +11,7 @@ export interface Constants {
 }
 
 /**
- * @description Direction enum
+ * Direction enum
  */
 export enum Direction {
   north = 'north',

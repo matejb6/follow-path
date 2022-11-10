@@ -26,9 +26,8 @@ export class Path {
   }
 
   /**
-   * @private
+   * Finds map start point, goes along path until end point and returns found map points
    * @returns Found ASCII map points
-   * @description Finds map start point, goes along path until end point and returns found map points
    */
   private findPathPoints(asciiMap: AsciiMap): AsciiMapPoint[] {
     const pathPoints: AsciiMapPoint[] = [];
@@ -171,20 +170,19 @@ export class Path {
   }
 
   /**
-   * @private
+   * Checks if path end is reached
    * @param pathPoints Path points
    * @param pathEndChar Path end char
    * @returns Path end
-   * @description Checks if path end is reached
    */
   private isPathEnd(pathPoints: AsciiMapPoint[], pathEndChar: string): boolean {
     return pathPoints.some((point: AsciiMapPoint) => point.getValue() === pathEndChar);
   }
 
   /**
+   * Retrieves path values and puts them into single path string
    * @public
    * @returns Path as string
-   * @description Retrieves path values and puts them into single path string
    */
   public getPathAsString(): string {
     let pathAsString = '';
@@ -195,10 +193,9 @@ export class Path {
   }
 
   /**
-   * @public
+   * Collects letters from path
    * @param alphabet Alphabet
    * @returns Collected letters
-   * @description Collects letters from path
    */
   public collectLetters(alphabet: string[]): string {
     let letters = '';
