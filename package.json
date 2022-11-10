@@ -6,9 +6,9 @@
   "scripts": {
     "start": "tsc && node ./dist/src/main.js",
     "build": "tsc",
-    "prettier:check": "prettier --check ./src ./test",
-    "prettier:write": "prettier --write ./src ./test",
-    "lint": "eslint ./src/** ./test/**",
+    "prettier:check": "prettier --check ./src ./tests",
+    "prettier:write": "prettier --write ./src ./tests",
+    "lint": "eslint ./src/** ./tests/**",
     "test": "jest",
     "prepare": "husky install"
   },
