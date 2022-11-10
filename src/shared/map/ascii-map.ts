@@ -39,23 +39,22 @@ export class AsciiMap {
   private hasTFork(): boolean {
     let hasTFork = false;
     const crossPoints: AsciiMapPoint[] = this.asciiMapPoints.filter(
-      (asciiMapPoint: AsciiMapPoint) => asciiMapPoint.value === constants.cross
+      (asciiMapPoint: AsciiMapPoint) =>
+        asciiMapPoint.value === constants.cross || constants.alphabet.includes(asciiMapPoint.value)
     );
+
     crossPoints.forEach((crossPoint: AsciiMapPoint) => {
-      const surroundPointsValues: Array<string | undefined> = [];
-      this.getPointSurroundingPoints(crossPoint).forEach((value: AsciiMapPoint | undefined) => {
-        surroundPointsValues.push(value?.value);
-      });
+      const surroundPointsValues: Array<string | undefined> = Array.from(
+        this.getPointSurroundingPoints(crossPoint).values()
+      ).map((item: AsciiMapPoint | undefined) => item?.value);
+
       const horizontalPathCount: number = surroundPointsValues.filter(
         (value) => value === constants.horizontalPath
       ).length;
+
       const verticalPathCount: number = surroundPointsValues.filter((value) => value === constants.verticalPath).length;
-      if (
-        (horizontalPathCount >= 2 && verticalPathCount >= 1) ||
-        (horizontalPathCount >= 1 && verticalPathCount >= 2)
-      ) {
-        hasTFork = true;
-      }
+
+      hasTFork = horizontalPathCount + verticalPathCount === 3;
     });
     return hasTFork;
   }
