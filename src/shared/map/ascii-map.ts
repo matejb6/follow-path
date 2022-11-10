@@ -152,13 +152,13 @@ export class AsciiMap {
 
   /**
    * Checks if map is valid
-   * @param pathStartChar Path start character
-   * @param pathEndChar Path end character
    * @returns Map valid
    */
-  public isMapValid(pathStartChar: string, pathEndChar: string): boolean {
+  public isMapValid(): boolean {
     return (
-      this.getAsciiMapCharCount(pathStartChar) === 1 && this.getAsciiMapCharCount(pathEndChar) === 1 && !this.hasTFork()
+      this.getAsciiMapCharCount(constants.pathStartChar) === 1 &&
+      this.getAsciiMapCharCount(constants.pathEndChar) === 1 &&
+      !this.hasTFork()
     );
   }
 }

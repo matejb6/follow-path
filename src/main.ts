@@ -1,5 +1,4 @@
 import { map1 } from '../data/valid-maps';
-import { constants } from './core/constants/constants';
 import { AsciiMap } from './shared/map/ascii-map';
 import { Path } from './shared/path/path';
 
@@ -12,10 +11,10 @@ class Main {
     console.log(`Follow Path Code Challenge\n\nASCII map\n${testMap}\n`);
 
     const asciiMap = new AsciiMap(testMap);
-    const isMapValid = asciiMap.isMapValid(constants.pathStartChar, constants.pathEndChar);
+    const isMapValid = asciiMap.isMapValid();
     if (isMapValid) {
       const path = new Path(asciiMap);
-      console.log(`Letters: ${path.collectLetters(constants.alphabet)}`);
+      console.log(`Letters: ${path.collectLetters()}`);
       console.log(`Path as characters: ${path.getPathAsString()}`);
     } else {
       console.log('Map is invalid');

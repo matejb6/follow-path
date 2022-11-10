@@ -194,14 +194,13 @@ export class Path {
 
   /**
    * Collects letters from path
-   * @param alphabet Alphabet
    * @returns Collected letters
    */
-  public collectLetters(alphabet: string[]): string {
+  public collectLetters(): string {
     let letters = '';
     this.pathPoints.forEach((point: AsciiMapPoint) => {
       // Collect letters, but only if not collected already
-      if (alphabet.includes(point.value) && !letters.includes(point.value)) {
+      if (constants.alphabet.includes(point.value) && !letters.includes(point.value)) {
         letters = letters.concat(point.value);
       }
     });
