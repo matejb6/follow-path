@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+  workflow_dispatch:
+
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 'Build'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        run: npm ci
+      - name: Build
+        run: npm run build
+
+  check-code:
+    runs-on: ubuntu-latest
+    name: 'Check code'
+    needs: [ build ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        run: npm ci
+      - name: Prettier
+        run: npm run prettier:check
+      - name: Lint
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    name: 'Test'
+    needs: [ check-code ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        run: npm ci
+      - name: Test
+        run: npm test
