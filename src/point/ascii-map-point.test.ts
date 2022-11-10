@@ -7,12 +7,15 @@ describe('AsciiMapPoint', () => {
     asciiMapPoint = new AsciiMapPoint(1, 2, 'A');
   });
 
-  test('should have position', () => {
-    expect(asciiMapPoint.getX()).toEqual(1);
-    expect(asciiMapPoint.getY()).toEqual(2);
+  test('should have coordinate X', () => {
+    expect(asciiMapPoint.x).toEqual(1);
+  });
+
+  test('should have coordinate Y', () => {
+    expect(asciiMapPoint.y).toEqual(2);
   });
 
   test('should have value', () => {
-    expect(asciiMapPoint.getValue()).toEqual('A');
+    expect(asciiMapPoint.value).toEqual('A');
   });
 });
