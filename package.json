@@ -9,7 +9,8 @@
     "prettier:check": "prettier --check ./src",
     "prettier:write": "prettier --write ./src",
     "lint": "eslint ./src/**",
-    "test": "mocha --require ts-node/register ./**/*.spec.ts"
+    "test": "mocha --require ts-node/register ./**/*.spec.ts",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
@@ -24,6 +25,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.5.1",
     "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.2",
     "mocha": "^10.0.0",
     "prettier": "^2.6.2",
     "ts-node": "^10.7.0",
