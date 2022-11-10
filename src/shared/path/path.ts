@@ -33,9 +33,7 @@ export class Path {
     const pathPoints: AsciiMapPoint[] = [];
     let direction: Direction | undefined;
     // Find first point, the entry point
-    let marker: AsciiMapPoint | undefined = asciiMap.mapPoints.find(
-      (point: AsciiMapPoint) => point.value === constants.pathStartChar
-    );
+    let marker = asciiMap.mapPoints.find((point) => point.value === constants.pathStartChar);
     if (marker != null) {
       pathPoints.push(marker);
     }
@@ -176,7 +174,7 @@ export class Path {
    * @returns Path end
    */
   private isPathEnd(pathPoints: AsciiMapPoint[], pathEndChar: string): boolean {
-    return pathPoints.some((point: AsciiMapPoint) => point.value === pathEndChar);
+    return pathPoints.some((point) => point.value === pathEndChar);
   }
 
   /**
@@ -185,25 +183,18 @@ export class Path {
    * @returns Path as string
    */
   public getPathAsString(): string {
-    let pathAsString = '';
-    this.pathPoints.forEach((point: AsciiMapPoint) => {
-      pathAsString = pathAsString.concat(point.value);
-    });
-    return pathAsString;
+    return this.pathPoints.map((point) => point.value).join('');
   }
 
   /**
-   * Collects letters from path
+   * Collects letters from path, remove duplicates
    * @returns Collected letters
    */
   public collectLetters(): string {
-    let letters = '';
-    this.pathPoints.forEach((point: AsciiMapPoint) => {
-      // Collect letters, but only if not collected already
-      if (constants.alphabet.includes(point.value) && !letters.includes(point.value)) {
-        letters = letters.concat(point.value);
-      }
-    });
-    return letters;
+    return this.pathPoints
+      .map((point) => point.value)
+      .filter((item) => constants.alphabet.includes(item))
+      .filter((item, index, array) => array.indexOf(item) === index)
+      .join('');
   }
 }
