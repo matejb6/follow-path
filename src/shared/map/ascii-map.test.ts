@@ -1,7 +1,7 @@
 import { AsciiMap } from './ascii-map';
-import { constants } from '../shared/constants';
-import { map1 } from '../../data/valid-maps';
-import { map6 } from '../../data/invalid-maps';
+import { constants } from '../../core/constants/constants';
+import { map1 } from '../../../data/valid-maps';
+import { map6 } from '../../../data/invalid-maps';
 
 describe('AsciiMap', () => {
   test('should have map points', () => {

@@ -1,4 +1,4 @@
-import { Constants } from './definitions';
+import { Constants } from '../interfaces/constants';
 
 /**
  * Constants

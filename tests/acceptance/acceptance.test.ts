@@ -1,10 +1,10 @@
-import { AsciiMap } from '../../src/map/ascii-map';
-import { Path } from '../../src/path/path';
+import { AsciiMap } from '../../src/shared/map/ascii-map';
+import { Path } from '../../src/shared/path/path';
 import { validMaps } from '../../data/valid-maps';
 import { validMapsLetters } from '../../data/valid-maps-letters';
 import { validMapsPathAsChars } from '../../data/valid-maps-path-as-chars';
 import { invalidMaps } from '../../data/invalid-maps';
-import { constants } from '../../src/shared/constants';
+import { constants } from '../../src/core/constants/constants';
 
 describe('Acceptance test', () => {
   describe('collected letters', () => {

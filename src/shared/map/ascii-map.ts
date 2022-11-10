@@ -1,5 +1,5 @@
-import { constants } from '../shared/constants';
-import { Direction } from '../shared/definitions';
+import { constants } from '../../core/constants/constants';
+import { Direction } from '../../core/enums/direction';
 import { AsciiMapPoint } from '../point/ascii-map-point';
 
 export class AsciiMap {

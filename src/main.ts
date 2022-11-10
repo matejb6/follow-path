@@ -1,7 +1,7 @@
 import { map1 } from '../data/valid-maps';
-import { constants } from './shared/constants';
-import { AsciiMap } from './map/ascii-map';
-import { Path } from './path/path';
+import { constants } from './core/constants/constants';
+import { AsciiMap } from './shared/map/ascii-map';
+import { Path } from './shared/path/path';
 
 class Main {
   /**
