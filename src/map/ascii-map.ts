@@ -3,11 +3,9 @@ import { Direction } from '../shared/definitions';
 import { AsciiMapPoint } from '../point/ascii-map-point';
 
 export class AsciiMap {
-  private readonly asciiMap: string;
   private readonly asciiMapPoints: AsciiMapPoint[];
 
-  constructor(asciiMap: string) {
-    this.asciiMap = asciiMap;
+  constructor(private readonly asciiMap: string) {
     this.asciiMapPoints = this.createAsciiMapPoints();
   }
 
@@ -41,12 +39,12 @@ export class AsciiMap {
   private hasTFork(): boolean {
     let hasTFork = false;
     const crossPoints: AsciiMapPoint[] = this.asciiMapPoints.filter(
-      (asciiMapPoint: AsciiMapPoint) => asciiMapPoint.getValue() === constants.cross
+      (asciiMapPoint: AsciiMapPoint) => asciiMapPoint.value === constants.cross
     );
     crossPoints.forEach((crossPoint: AsciiMapPoint) => {
       const surroundPointsValues: Array<string | undefined> = [];
       this.getPointSurroundingPoints(crossPoint).forEach((value: AsciiMapPoint | undefined) => {
-        surroundPointsValues.push(value?.getValue());
+        surroundPointsValues.push(value?.value);
       });
       const horizontalPathCount: number = surroundPointsValues.filter(
         (value) => value === constants.horizontalPath
@@ -91,7 +89,7 @@ export class AsciiMap {
    */
   private getNorthPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() - 1 && point.getX() === asciiMapPoint.getX()
+      (point: AsciiMapPoint) => point.y === asciiMapPoint.y - 1 && point.x === asciiMapPoint.x
     );
   }
 
@@ -102,7 +100,7 @@ export class AsciiMap {
    */
   private getEastPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() && point.getX() === asciiMapPoint.getX() + 1
+      (point: AsciiMapPoint) => point.y === asciiMapPoint.y && point.x === asciiMapPoint.x + 1
     );
   }
 
@@ -113,7 +111,7 @@ export class AsciiMap {
    */
   private getSouthPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() + 1 && point.getX() === asciiMapPoint.getX()
+      (point: AsciiMapPoint) => point.y === asciiMapPoint.y + 1 && point.x === asciiMapPoint.x
     );
   }
 
@@ -124,23 +122,15 @@ export class AsciiMap {
    */
   private getWestPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() && point.getX() === asciiMapPoint.getX() - 1
+      (point: AsciiMapPoint) => point.y === asciiMapPoint.y && point.x === asciiMapPoint.x - 1
     );
-  }
-
-  /**
-   * Returns ASCII map
-   * @returns ASCII map
-   */
-  public getAsciiMap(): string {
-    return this.asciiMap;
   }
 
   /**
    * Returns ASCII map points
    * @returns ASCII map points
    */
-  public getAsciiMapPoints(): AsciiMapPoint[] {
+  public get mapPoints(): AsciiMapPoint[] {
     return this.asciiMapPoints;
   }
 
