@@ -5,6 +5,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+### Changed
+### Fixed
+
+## [1.1.0] - 2022-11-10
+### Added
+- License
+- Husky
+- GitHub Actions workflow Version
+### Changed
+- Package additional info
+- Package dependencies
+- GitHub Actions workflow CI
+- ESLint config
+- Test migrated from Chai and Mocha to Jest
+- Readme
 
 ## [1.0.3] - 2022-05-11
 ### Added

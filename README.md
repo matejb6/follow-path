@@ -1,34 +1,73 @@
 # Follow Path
 
 ## About
-Follow path code challenge app written in TypeScript
+Follow path code challenge app written in TypeScript.
+
+## Content
+An algorithm checks an ASCII map and goes from start to finish if map is valid.
+While doing that, letters are collected along the way.
+
+## App creation
+The app was created manually by initializing npm and adding packages and setup.
+
+## Additional packages
+* `ESLint` added with: `npm init @eslint/config`
+* `Prettier` added with: `npm install prettier --save-dev`
+* `Husky` added with: `npm install husky --save-dev`
+
+## About package
+### Scripts
+* `start`: Runs app
+* `build`: Builds app
+* `prettier:check`: Checks code formatting with Prettier
+* `prettier:write`: Formats code with Prettier
+* `lint`: Lints code with ESLint
+* `test`: Tests app with Jest
+* `prepare`: Prepare script to install Husky
+
+## GitHub Actions
+Defined workflows:
+* `CI` as a general CI workflow
+* `Version` for creating new versions
+
+For more details see `.github/workflows/`.
+
+## Commit hooks
+Pre commit hooks are used to check code with `Prettier` and `ESLint`.
+Before each commit, staged files are checked with defined scripts and committing of unchecked code will be prevented.
+To commit code successfully, check `Prettier` and `Lint` paragraphs of this file.
 
 ## Requirements
 * node.js v14.0 and higher
 * npm v6.0 and higher
 
-## CI setup
-CI is run by GitHub Actions. See `.github/workflows/main.yml` for further details.
-
 ## Setup
-* in project root run `npm install` to install deps
+* In project root run `npm install` to install dependencies
+* Script `prepare` should run with `npm install` to install husky, if not, run `npm run prepare`
 
 ## Start
-* in project root run `npm start` to run code
+* In project root run `npm start` to run the app with node
 
-## Test
-* in project root run `npm test` to test code
-
-## Lint
-* in project root run `npm run lint` to lint code
+## Build
+* In project root run `npm run build` to build the app, outputs JavaScript code in `.dist` folder
 
 ## Prettier
-* In project root run `npm run prettier:check` to check if files are formatted
+* In project root run `npm run prettier:check` to check if files are formatted via [Prettier](https://prettier.io)
 * In project root run `npm run prettier:write` to format files
 
-## Release
-* In project root run `npm version major|minor|patch` to bump version
-* Go to GitHub Releases to make a new release
+## Lint
+* In project root run `npm run lint` to lint the app via [ESLint](https://eslint.org)
+
+## Test
+* In project root run `npm test` to execute the unit tests via [Jest](https://jestjs.io)
+
+## New version
+* Go to GitHub repo
+* Click on `Actions`
+* Click on `Version` workflow
+* Click `Run workflow`
+* Select branch and enter next version (eg. major, minor, patch)
+* New version is created, commit and tag are pushed to repo
 
 ## Developer
 **Matej Buljan**

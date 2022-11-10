@@ -12,21 +12,18 @@ export class AsciiMap {
   }
 
   /**
-   * @private
-   * @static
+   * Checks if end of row is reached
    * @param char Character
    * @returns End of row
-   * @description Checks if end of row is reached
    */
   private static isEndOfRow(char: string): boolean {
-    return !!/[\r\n]/.exec(char);
+    return !(/[\r\n]/.exec(char) == null);
   }
 
   /**
-   * @private
+   * Returns ASCII map character count
    * @param char Character
    * @returns ASCII map character count
-   * @description Returns ASCII map character count
    */
   private getAsciiMapCharCount(char: string): number {
     let charCount = 0;
@@ -37,9 +34,9 @@ export class AsciiMap {
   }
 
   /**
-   * @private
+   * Checks if map has T fork,
+   * finds cross points and checks if there are multiple horizontal and vertical paths
    * @returns Has map T fork
-   * @description Checks if map has T fork, finds cross points and checks if there are multiple horizontal and vertical paths
    */
   private hasTFork(): boolean {
     let hasTFork = false;
@@ -47,7 +44,7 @@ export class AsciiMap {
       (asciiMapPoint: AsciiMapPoint) => asciiMapPoint.getValue() === constants.cross
     );
     crossPoints.forEach((crossPoint: AsciiMapPoint) => {
-      const surroundPointsValues: (string | undefined)[] = [];
+      const surroundPointsValues: Array<string | undefined> = [];
       this.getPointSurroundingPoints(crossPoint).forEach((value: AsciiMapPoint | undefined) => {
         surroundPointsValues.push(value?.getValue());
       });
@@ -66,9 +63,8 @@ export class AsciiMap {
   }
 
   /**
-   * @private
+   * Creates ASCII map points
    * @returns Created ASCII map points
-   * @description Creates ASCII map points
    */
   private createAsciiMapPoints(): AsciiMapPoint[] {
     const asciiMapPoints: AsciiMapPoint[] = [];
@@ -89,10 +85,9 @@ export class AsciiMap {
   }
 
   /**
-   * @private
+   * Returns north point from reference point
    * @param asciiMapPoint ASCII map point
    * @returns North point
-   * @description Returns north point from reference point
    */
   private getNorthPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
@@ -101,10 +96,9 @@ export class AsciiMap {
   }
 
   /**
-   * @private
+   * Returns east point from reference point
    * @param asciiMapPoint ASCII map point
    * @returns East point
-   * @description Returns east point from reference point
    */
   private getEastPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
@@ -113,10 +107,9 @@ export class AsciiMap {
   }
 
   /**
-   * @private
+   * Returns south point from reference point
    * @param asciiMapPoint ASCII map point
    * @returns South point
-   * @description Returns south point from reference point
    */
   private getSouthPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
@@ -125,10 +118,9 @@ export class AsciiMap {
   }
 
   /**
-   * @private
+   * Returns west point from reference point
    * @param asciiMapPoint ASCII map point
    * @returns West point
-   * @description Returns west point from reference point
    */
   private getWestPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
     return this.asciiMapPoints.find(
@@ -137,27 +129,24 @@ export class AsciiMap {
   }
 
   /**
-   * @public
+   * Returns ASCII map
    * @returns ASCII map
-   * @description Returns ASCII map
    */
   public getAsciiMap(): string {
     return this.asciiMap;
   }
 
   /**
-   * @public
+   * Returns ASCII map points
    * @returns ASCII map points
-   * @description Returns ASCII map points
    */
   public getAsciiMapPoints(): AsciiMapPoint[] {
     return this.asciiMapPoints;
   }
 
   /**
-   * @public
+   * Returns point surrounding points
    * @returns Point surrounding points
-   * @description Returns point surrounding points
    */
   public getPointSurroundingPoints(asciiMapPoint: AsciiMapPoint): Map<Direction, AsciiMapPoint | undefined> {
     const pointSurroundingPoints: Map<Direction, AsciiMapPoint | undefined> = new Map<
@@ -172,11 +161,10 @@ export class AsciiMap {
   }
 
   /**
-   * @public
+   * Checks if map is valid
    * @param pathStartChar Path start character
    * @param pathEndChar Path end character
    * @returns Map valid
-   * @description Checks if map is valid
    */
   public isMapValid(pathStartChar: string, pathEndChar: string): boolean {
     return (

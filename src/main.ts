@@ -5,9 +5,7 @@ import { Path } from './path/path';
 
 class Main {
   /**
-   * @public
-   * @static
-   * @description Main run method, entry point to program execution
+   * Main run method, entry point to program execution
    */
   public static run(): void {
     const testMap: string = map1;
