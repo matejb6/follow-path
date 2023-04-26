@@ -11,22 +11,9 @@ on:
   workflow_call:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: 'Build'
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup
-        run: npm ci
-      - name: Build
-        run: npm run build
-
   check-code:
     runs-on: ubuntu-latest
     name: 'Check code'
-    needs: [ build ]
 
     steps:
       - name: Checkout
@@ -38,10 +25,23 @@ jobs:
       - name: Lint
         run: npm run lint
 
+  build:
+    runs-on: ubuntu-latest
+    name: 'Build'
+    needs: [ check-code ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        run: npm ci
+      - name: Build
+        run: npm run build
+
   test:
     runs-on: ubuntu-latest
     name: 'Test'
-    needs: [ check-code ]
+    needs: [ build ]
 
     steps:
       - name: Checkout
