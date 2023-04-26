@@ -1,13 +1,11 @@
-import { constants } from '../shared/constants';
-import { Direction } from '../shared/definitions';
+import { constants } from '../../core/constants/constants';
+import { Direction } from '../../core/enums/direction';
 import { AsciiMapPoint } from '../point/ascii-map-point';
 
 export class AsciiMap {
-  private readonly asciiMap: string;
   private readonly asciiMapPoints: AsciiMapPoint[];
 
-  constructor(asciiMap: string) {
-    this.asciiMap = asciiMap;
+  constructor(private readonly asciiMap: string) {
     this.asciiMapPoints = this.createAsciiMapPoints();
   }
 
@@ -40,24 +38,23 @@ export class AsciiMap {
    */
   private hasTFork(): boolean {
     let hasTFork = false;
-    const crossPoints: AsciiMapPoint[] = this.asciiMapPoints.filter(
-      (asciiMapPoint: AsciiMapPoint) => asciiMapPoint.getValue() === constants.cross
+    const crossPoints = this.asciiMapPoints.filter(
+      (asciiMapPoint: AsciiMapPoint) =>
+        asciiMapPoint.value === constants.cross || constants.alphabet.includes(asciiMapPoint.value)
     );
-    crossPoints.forEach((crossPoint: AsciiMapPoint) => {
-      const surroundPointsValues: Array<string | undefined> = [];
-      this.getPointSurroundingPoints(crossPoint).forEach((value: AsciiMapPoint | undefined) => {
-        surroundPointsValues.push(value?.getValue());
-      });
+
+    crossPoints.forEach((crossPoint) => {
+      const surroundPointsValues: Array<string | undefined> = Array.from(
+        this.getPointSurroundingPoints(crossPoint).values()
+      ).map((item) => item?.value);
+
       const horizontalPathCount: number = surroundPointsValues.filter(
         (value) => value === constants.horizontalPath
       ).length;
+
       const verticalPathCount: number = surroundPointsValues.filter((value) => value === constants.verticalPath).length;
-      if (
-        (horizontalPathCount >= 2 && verticalPathCount >= 1) ||
-        (horizontalPathCount >= 1 && verticalPathCount >= 2)
-      ) {
-        hasTFork = true;
-      }
+
+      hasTFork = horizontalPathCount + verticalPathCount === 3;
     });
     return hasTFork;
   }
@@ -90,9 +87,7 @@ export class AsciiMap {
    * @returns North point
    */
   private getNorthPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
-    return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() - 1 && point.getX() === asciiMapPoint.getX()
-    );
+    return this.asciiMapPoints.find((point) => point.y === asciiMapPoint.y - 1 && point.x === asciiMapPoint.x);
   }
 
   /**
@@ -101,9 +96,7 @@ export class AsciiMap {
    * @returns East point
    */
   private getEastPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
-    return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() && point.getX() === asciiMapPoint.getX() + 1
-    );
+    return this.asciiMapPoints.find((point) => point.y === asciiMapPoint.y && point.x === asciiMapPoint.x + 1);
   }
 
   /**
@@ -112,9 +105,7 @@ export class AsciiMap {
    * @returns South point
    */
   private getSouthPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
-    return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() + 1 && point.getX() === asciiMapPoint.getX()
-    );
+    return this.asciiMapPoints.find((point) => point.y === asciiMapPoint.y + 1 && point.x === asciiMapPoint.x);
   }
 
   /**
@@ -123,24 +114,14 @@ export class AsciiMap {
    * @returns West point
    */
   private getWestPoint(asciiMapPoint: AsciiMapPoint): AsciiMapPoint | undefined {
-    return this.asciiMapPoints.find(
-      (point: AsciiMapPoint) => point.getY() === asciiMapPoint.getY() && point.getX() === asciiMapPoint.getX() - 1
-    );
-  }
-
-  /**
-   * Returns ASCII map
-   * @returns ASCII map
-   */
-  public getAsciiMap(): string {
-    return this.asciiMap;
+    return this.asciiMapPoints.find((point) => point.y === asciiMapPoint.y && point.x === asciiMapPoint.x - 1);
   }
 
   /**
    * Returns ASCII map points
    * @returns ASCII map points
    */
-  public getAsciiMapPoints(): AsciiMapPoint[] {
+  public get mapPoints(): AsciiMapPoint[] {
     return this.asciiMapPoints;
   }
 
@@ -162,13 +143,13 @@ export class AsciiMap {
 
   /**
    * Checks if map is valid
-   * @param pathStartChar Path start character
-   * @param pathEndChar Path end character
    * @returns Map valid
    */
-  public isMapValid(pathStartChar: string, pathEndChar: string): boolean {
+  public isMapValid(): boolean {
     return (
-      this.getAsciiMapCharCount(pathStartChar) === 1 && this.getAsciiMapCharCount(pathEndChar) === 1 && !this.hasTFork()
+      this.getAsciiMapCharCount(constants.pathStartChar) === 1 &&
+      this.getAsciiMapCharCount(constants.pathEndChar) === 1 &&
+      !this.hasTFork()
     );
   }
 }

@@ -1,7 +1,7 @@
-import { constants } from '../shared/constants';
+import { constants } from '../../core/constants/constants';
+import { Direction } from '../../core/enums/direction';
 import { AsciiMap } from '../map/ascii-map';
 import { AsciiMapPoint } from '../point/ascii-map-point';
-import { Direction } from '../shared/definitions';
 
 export class Path {
   private readonly pathPoints: AsciiMapPoint[];
@@ -11,11 +11,11 @@ export class Path {
   }
 
   private static isDirectionChange(asciiMapPoint: AsciiMapPoint, directionChangeChar: string): boolean {
-    return asciiMapPoint.getValue() === directionChangeChar;
+    return asciiMapPoint.value === directionChangeChar;
   }
 
   private static isNextPointAllowed(asciiMapPoint: AsciiMapPoint | undefined): boolean {
-    const value = asciiMapPoint != null ? asciiMapPoint.getValue() : '';
+    const value = asciiMapPoint != null ? asciiMapPoint.value : '';
     return (
       constants.alphabet.includes(value) ||
       value === constants.cross ||
@@ -33,14 +33,12 @@ export class Path {
     const pathPoints: AsciiMapPoint[] = [];
     let direction: Direction | undefined;
     // Find first point, the entry point
-    let marker: AsciiMapPoint | undefined = asciiMap
-      .getAsciiMapPoints()
-      .find((point: AsciiMapPoint) => point.getValue() === constants.pathStartChar);
+    let marker = asciiMap.mapPoints.find((point) => point.value === constants.pathStartChar);
     if (marker != null) {
       pathPoints.push(marker);
     }
     let i = 0;
-    while (!this.isPathEnd(pathPoints, constants.pathEndChar) && i <= asciiMap.getAsciiMapPoints().length) {
+    while (!this.isPathEnd(pathPoints, constants.pathEndChar) && i <= asciiMap.mapPoints.length) {
       if (marker != null) {
         const northPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.north);
         const eastPoint = asciiMap.getPointSurroundingPoints(marker).get(Direction.east);
@@ -53,7 +51,7 @@ export class Path {
         const goWest = Path.isNextPointAllowed(westPoint);
 
         // Get direction from starting point
-        if (marker.getValue() === constants.pathStartChar) {
+        if (marker.value === constants.pathStartChar) {
           if (goNorth) {
             direction = Direction.north;
           } else if (goEast) {
@@ -73,7 +71,7 @@ export class Path {
         if (direction === Direction.north) {
           if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(northPoint != null && goNorth))) &&
+              (constants.alphabet.includes(marker.value) && !(northPoint != null && goNorth))) &&
             eastPoint != null &&
             goEast
           ) {
@@ -82,7 +80,7 @@ export class Path {
             marker = eastPoint;
           } else if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(northPoint != null && goNorth))) &&
+              (constants.alphabet.includes(marker.value) && !(northPoint != null && goNorth))) &&
             westPoint != null &&
             goWest
           ) {
@@ -96,7 +94,7 @@ export class Path {
         } else if (direction === Direction.east) {
           if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(eastPoint != null && goEast))) &&
+              (constants.alphabet.includes(marker.value) && !(eastPoint != null && goEast))) &&
             northPoint != null &&
             goNorth
           ) {
@@ -105,7 +103,7 @@ export class Path {
             marker = northPoint;
           } else if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(eastPoint != null && goEast))) &&
+              (constants.alphabet.includes(marker.value) && !(eastPoint != null && goEast))) &&
             southPoint != null &&
             goSouth
           ) {
@@ -119,7 +117,7 @@ export class Path {
         } else if (direction === Direction.south) {
           if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(southPoint != null && goSouth))) &&
+              (constants.alphabet.includes(marker.value) && !(southPoint != null && goSouth))) &&
             eastPoint != null &&
             goEast
           ) {
@@ -128,7 +126,7 @@ export class Path {
             marker = eastPoint;
           } else if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(southPoint != null && goSouth))) &&
+              (constants.alphabet.includes(marker.value) && !(southPoint != null && goSouth))) &&
             westPoint != null &&
             goWest
           ) {
@@ -142,7 +140,7 @@ export class Path {
         } else if (direction === Direction.west) {
           if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(westPoint != null && goWest))) &&
+              (constants.alphabet.includes(marker.value) && !(westPoint != null && goWest))) &&
             southPoint != null &&
             goSouth
           ) {
@@ -151,7 +149,7 @@ export class Path {
             marker = southPoint;
           } else if (
             (Path.isDirectionChange(marker, constants.cross) ||
-              (constants.alphabet.includes(marker.getValue()) && !(westPoint != null && goWest))) &&
+              (constants.alphabet.includes(marker.value) && !(westPoint != null && goWest))) &&
             northPoint != null &&
             goNorth
           ) {
@@ -176,7 +174,7 @@ export class Path {
    * @returns Path end
    */
   private isPathEnd(pathPoints: AsciiMapPoint[], pathEndChar: string): boolean {
-    return pathPoints.some((point: AsciiMapPoint) => point.getValue() === pathEndChar);
+    return pathPoints.some((point) => point.value === pathEndChar);
   }
 
   /**
@@ -185,26 +183,18 @@ export class Path {
    * @returns Path as string
    */
   public getPathAsString(): string {
-    let pathAsString = '';
-    this.pathPoints.forEach((point: AsciiMapPoint) => {
-      pathAsString = pathAsString.concat(point.getValue());
-    });
-    return pathAsString;
+    return this.pathPoints.map((point) => point.value).join('');
   }
 
   /**
-   * Collects letters from path
-   * @param alphabet Alphabet
+   * Collects letters from path, remove duplicates
    * @returns Collected letters
    */
-  public collectLetters(alphabet: string[]): string {
-    let letters = '';
-    this.pathPoints.forEach((point: AsciiMapPoint) => {
-      // Collect letters, but only if not collected already
-      if (alphabet.includes(point.getValue()) && !letters.includes(point.getValue())) {
-        letters = letters.concat(point.getValue());
-      }
-    });
-    return letters;
+  public collectLetters(): string {
+    return this.pathPoints
+      .map((point) => point.value)
+      .filter((item) => constants.alphabet.includes(item))
+      .filter((item, index, array) => array.indexOf(item) === index)
+      .join('');
   }
 }

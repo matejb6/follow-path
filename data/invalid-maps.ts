@@ -1,29 +1,27 @@
-export const map6 = `     -A---+
+export const invalidMap1 = `     -A---+
           |
   x-B-+   C
       |   |
       +---+`;
-export const map7 = `   @--A---+
+export const invalidMap2 = `   @--A---+
           |
     B-+   C
       |   |
       +---+`;
-export const map8 = `   @--A-@-+
+export const invalidMap3 = `   @--A-@-+
           |
   x-B-+   C
       |   |
       +---+`;
-export const map9 = `   @--A---+
+export const invalidMap4 = `   @--A---+
           |
   x-Bx+   C
       |   |
       +---+`;
-export const map10 = `        x-B
+export const invalidMap5 = `        x-B
           |
    @--A---+
           |
      x+   C
       |   |
       +---+`;
-
-export const invalidMaps: string[] = [map6, map7, map8, map9, map10];
