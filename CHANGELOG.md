@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.2.0] - 2023-04-26
+### Added
+### Changed
+- Code, files and tests refactored
+- Readme
+- License year
+- GitHub Actions workflows
+- Package info and dependencies
+- ESLint rules
+### Fixed
+- T fork check
+
 ## [1.1.0] - 2022-11-10
 ### Added
 - License
