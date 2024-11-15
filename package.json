@@ -8,9 +8,9 @@
   "scripts": {
     "start": "tsx ./src/main.ts",
     "build": "pkgroll",
-    "prettier:check": "prettier --check ./src",
-    "prettier:write": "prettier --write ./src",
-    "lint": "eslint ./src/**",
+    "prettier:check": "prettier --check ./data ./src",
+    "prettier:write": "prettier --write ./data ./src",
+    "lint": "eslint ./data/** ./src/**",
     "test": "jest",
     "prepare": "husky"
   },
