@@ -8,7 +8,7 @@ An algorithm checks the ASCII map and goes from start to finish if map is valid.
 All path characters together with letters are collected.
 
 ## App creation
-The app was created manually by initializing npm and adding packages and setup.
+This app was created manually by initializing npm and adding packages and setup.
 
 ## Package
 ### Scripts
@@ -21,8 +21,8 @@ The app was created manually by initializing npm and adding packages and setup.
 * `prepare`: Prepare script to install Husky
 
 ### Additional packages
-* `ESLint` added with: `npm init @eslint/config`
-* `Husky` added with: `npm install husky --save-dev`
+* `ESLint` added with: `npm init @eslint/config@latest`
+* `Husky` added with: `npx husky init`
 * `Jest` added with: `npm init jest --save-dev`
 * `Prettier` added with: `npm install prettier --save-dev`
 
@@ -50,7 +50,7 @@ Defined workflows:
 For more details see `.github/workflows/`.
 
 ## Requirements
-* node.js v14.0 and higher
+* node.js ^20.18.0
 
 ## Setup
 * In project root run `npm install` to install dependencies
