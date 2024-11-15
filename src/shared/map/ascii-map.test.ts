@@ -1,6 +1,6 @@
-import { map1 } from '../../../data/valid-maps';
-import { invalidMap1 } from '../../../data/invalid-maps';
-import { AsciiMap } from './ascii-map';
+import { map1 } from '../../../data/valid-maps.ts';
+import { invalidMap1 } from '../../../data/invalid-maps.ts';
+import { AsciiMap } from './ascii-map.ts';
 
 describe('AsciiMap', () => {
   test('should have map points', () => {

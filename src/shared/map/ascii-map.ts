@@ -1,6 +1,6 @@
-import { constants } from '../../core/constants/constants';
-import { Direction } from '../../core/enums/direction';
-import { AsciiMapPoint } from '../point/ascii-map-point';
+import { constants } from '../../core/constants/constants.ts';
+import { Direction } from '../../core/enums/direction.ts';
+import { AsciiMapPoint } from '../point/ascii-map-point.ts';
 
 export class AsciiMap {
   private readonly asciiMapPoints: AsciiMapPoint[];
@@ -26,7 +26,9 @@ export class AsciiMap {
   private getAsciiMapCharCount(char: string): number {
     let charCount = 0;
     for (let i = 0; i < this.asciiMap.length; i++) {
-      char === this.asciiMap.charAt(i) && charCount++;
+      if (char === this.asciiMap.charAt(i)) {
+        charCount++;
+      }
     }
     return charCount;
   }

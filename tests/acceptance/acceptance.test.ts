@@ -1,7 +1,7 @@
-import { map1, map2, map3, map4, map5 } from '../../data/valid-maps';
-import { invalidMap1, invalidMap2, invalidMap3, invalidMap4, invalidMap5 } from '../../data/invalid-maps';
-import { AsciiMap } from '../../src/shared/map/ascii-map';
-import { Path } from '../../src/shared/path/path';
+import { map1, map2, map3, map4, map5 } from '../../data/valid-maps.ts';
+import { invalidMap1, invalidMap2, invalidMap3, invalidMap4, invalidMap5 } from '../../data/invalid-maps.ts';
+import { AsciiMap } from '../../src/shared/map/ascii-map.ts';
+import { Path } from '../../src/shared/path/path.ts';
 
 describe('Acceptance test', () => {
   describe('valid maps', () => {
