@@ -1,4 +1,4 @@
-import { AsciiMapPoint } from './ascii-map-point';
+import { AsciiMapPoint } from './ascii-map-point.ts';
 
 describe('AsciiMapPoint', () => {
   let asciiMapPoint: AsciiMapPoint;

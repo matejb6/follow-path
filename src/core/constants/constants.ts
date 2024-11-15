@@ -1,4 +1,4 @@
-import { Constants } from '../interfaces/constants';
+import { Constants } from '../interfaces/constants.ts';
 
 /**
  * Constants

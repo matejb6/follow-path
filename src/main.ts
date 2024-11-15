@@ -1,6 +1,6 @@
-import { map1 } from '../data/valid-maps';
-import { AsciiMap } from './shared/map/ascii-map';
-import { Path } from './shared/path/path';
+import { map1 } from '../data/valid-maps.ts';
+import { AsciiMap } from './shared/map/ascii-map.ts';
+import { Path } from './shared/path/path.ts';
 
 class Main {
   /**
