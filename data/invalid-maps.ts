@@ -1,24 +1,24 @@
-export const invalidMap1 = `     -A---+
+export const INVALID_MAP_1 = `     -A---+
           |
   x-B-+   C
       |   |
       +---+`;
-export const invalidMap2 = `   @--A---+
+export const INVALID_MAP_2 = `   @--A---+
           |
     B-+   C
       |   |
       +---+`;
-export const invalidMap3 = `   @--A-@-+
+export const INVALID_MAP_3 = `   @--A-@-+
           |
   x-B-+   C
       |   |
       +---+`;
-export const invalidMap4 = `   @--A---+
+export const INVALID_MAP_4 = `   @--A---+
           |
   x-Bx+   C
       |   |
       +---+`;
-export const invalidMap5 = `        x-B
+export const INVALID_MAP_5 = `        x-B
           |
    @--A---+
           |

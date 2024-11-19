@@ -1,7 +1,7 @@
-import { constants } from '../../core/constants/constants';
-import { Direction } from '../../core/enums/direction';
-import { AsciiMap } from '../map/ascii-map';
-import { AsciiMapPoint } from '../point/ascii-map-point';
+import { constants } from '../../core/constants/constants.ts';
+import { Direction } from '../../core/enums/direction.ts';
+import { AsciiMap } from '../map/ascii-map.ts';
+import { AsciiMapPoint } from '../point/ascii-map-point.ts';
 
 export class Path {
   private readonly pathPoints: AsciiMapPoint[];
