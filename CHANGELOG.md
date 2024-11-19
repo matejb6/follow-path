@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.3.0] - 2024-11-19
+### Changed
+- Package update
+- Start and build process
+- tsconfig
+- GitHub Actions workflows
+- Format and lint data folder
+
 ## [1.2.0] - 2023-04-26
 ### Added
 ### Changed
